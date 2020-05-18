@@ -106,21 +106,16 @@ public class HuffmanCoding{
 			BTNode<Integer,String> N = new BTNode<Integer,String>(); // Assign a new root node
 			BTNode<Integer,String> X = min_freq(SL); // Retrieve the smallest element and removes it, may be a previously constructed root
 			BTNode<Integer,String> Y = min_freq(SL); // Retrieve the second smallest element and removes it, may be a previously constructed root
-			if(X.getKey().equals(Y.getKey())) { // Tie breaker in the event that both symbols have the same frequency
-				if(X.getValue().compareTo(Y.getValue())>0) { // Swap positions in X has a larger symbol than Y
-					N.setLeftChild(Y);
+			if(X.getKey().equals(Y.getKey()) && X.getValue().compareTo(Y.getValue())>0) { // Tie breaker in the event that both symbols have the same frequency
+					N.setLeftChild(Y); // Swap positions in X has a larger symbol than Y
 					N.setRightChild(X); 
-				}else {
-					N.setLeftChild(X);
-					N.setRightChild(Y);
-				}
 			}else {
 				N.setLeftChild(X);
 				N.setRightChild(Y); 
 			}
 			N.setKey(N.getLeftChild().getKey() + N.getRightChild().getKey()); // The frequency becomes the combination of both nodes so as to move up the tree
 			N.setValue(N.getLeftChild().getValue() + N.getRightChild().getValue()); // The symbols combine as well
-			SL.add(N); // Adds the element back so it can be assigned a parent or 
+			SL.add(N); // Adds the element back so it can be assigned a parent or result as the root of the huffman tree
 		}
 		return min_freq(SL); // Returns the final node i.e. the root of the complete huffman tree
 	}
