@@ -9,7 +9,7 @@ package ciic4020.project3.tree;
  * @param <K> Generic type for the key of the values to be stored in the nodes
  * @param <V> Generic type for the values to be stored in the nodes
  */
-public class BTNode<K extends Comparable<K>, V> implements Comparable<BTNode<K,V>>{
+public class BTNode<K extends Comparable<K>, V extends Comparable<V>> implements Comparable<BTNode<K,V>>{
 	private K key;
 	private V value;
 	private BTNode<K, V> leftChild, rightChild, parent;
@@ -71,6 +71,7 @@ public class BTNode<K extends Comparable<K>, V> implements Comparable<BTNode<K,V
 	@Override
 	public int compareTo(BTNode<K, V> o) {
 		return getKey().compareTo(o.getKey());
+		
 	}
 	
 
